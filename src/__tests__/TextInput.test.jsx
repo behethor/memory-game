@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import TextInput from '../components/TextInput'
-import { describe } from 'vitest'
 
 describe('TextInput', test => {
   test('renders TextInput component', () => {

@@ -6,7 +6,7 @@ First, run the development server:
 
 ```bash
 npm i
-# or
+# then
 npm run dev
 ```
 
@@ -24,6 +24,7 @@ This project is a minimalist and simple Memory card game, developed using the li
 - [Tailwindcss](https://tailwindcss.com/)
 - [Vitest](https://vitest.dev/)
 - [React Testing Library](https://testing-library.com/)
+- [Eslint](https://eslint.org/)
 
 ## Game info
 

@@ -11,7 +11,7 @@ const solvedPairs = [1, 3]
 
 describe('Cards component', () => {
   test('renders the correct number of cards', () => {
-    render(<Cards gameCards={gameCards} flippedCards={flippedCards} solvedPairs={solvedPairs}/>)
+    render(<Cards gameCards={gameCards} flippedCards={flippedCards} solvedPairs={solvedPairs} />)
     const cards = screen.getAllByRole('img')
     expect(cards.length).toBe(gameCards.length)
   })

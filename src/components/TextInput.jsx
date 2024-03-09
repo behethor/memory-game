@@ -1,6 +1,6 @@
 import { forwardRef, useState } from 'react'
 
-const TextInput = forwardRef(function TextInput (props, ref) {
+const TextInput = forwardRef(function TextInput(props, ref) {
   const { label, id } = props
   const [value, setValue] = useState('')
   const handleChange = (evt) => {

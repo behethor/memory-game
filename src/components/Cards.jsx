@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function Cards ({
+export default function Cards({
   gameCards = [],
   handleClick,
   flippedCards = [],
@@ -29,6 +29,6 @@ export default function Cards ({
           </div>
         )
       })}
-      </section>
+    </section>
   )
 }

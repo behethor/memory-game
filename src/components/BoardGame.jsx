@@ -13,7 +13,7 @@ import {
   setGamedataStore
 } from '@/controler/game'
 
-export default function BoardGame ({ cardImages }) {
+export default function BoardGame({ cardImages }) {
   const [userName, setUserName] = useState('')
   const [gameCards, setGameCards] = useState([])
   const [flippedCards, setFlippedCards] = useState([])
@@ -114,7 +114,7 @@ export default function BoardGame ({ cardImages }) {
     <section className={`bg-white-bone container flex flex-col pt-20 pb-20 rounded-2xl ${openModal && 'backdrop-blur-3xl'} lg:min-w-[1560px] lg:min-h-[920px]`}>
       <Header score={score} wrongMoves={wrongMoves} userName={userName} />
       <Modal open={openModal}>
-        <WelcomePanel userName={userName} handleUserName={onSetUserName} onClick={onCloseModal}/>
+        <WelcomePanel userName={userName} handleUserName={onSetUserName} onClick={onCloseModal} />
       </Modal>
       <Modal open={playAgainModal}>
         <GameOver userName={userName} handlePlayAgain={onPlayAgain} />

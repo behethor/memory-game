@@ -1,4 +1,3 @@
-import { vi, describe, expect, test } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import WelcomePanel from '@/components/WelcomePanel'
 
@@ -12,7 +11,7 @@ describe('WelcomePanel', () => {
   })
 
   test('renders input field when userName is not provided', () => {
-    render(<WelcomePanel userName="" onChangeUserName={() => {}} onClick={() => {}} />)
+    render(<WelcomePanel userName="" onChangeUserName={() => { }} onClick={() => { }} />)
 
     const inputField = 'Enter your name to start the game'
     expect(screen.getByText(inputField)).toBeInTheDocument()
@@ -20,7 +19,7 @@ describe('WelcomePanel', () => {
 
   test('calls onClick when play button is clicked', () => {
     const onClick = vi.fn()
-    render(<WelcomePanel userName="John Doe" onChangeUserName={() => {}} onClick={onClick} />)
+    render(<WelcomePanel userName="John Doe" onChangeUserName={() => { }} onClick={onClick} />)
 
     const playButton = screen.getByText('¡Play!')
     fireEvent.click(playButton)
