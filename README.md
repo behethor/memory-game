@@ -5,32 +5,45 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+npm i
+# or
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## About the project
 
-To learn more about Next.js, take a look at the following resources:
+This project is a minimalist and simple Memory card game, developed using the listed technologies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js](https://nextjs.org/docs)
+- [React](https://es.react.dev/)
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Tailwindcss](https://tailwindcss.com/)
+- [Vitest](https://vitest.dev/)
+- [React Testing Library](https://testing-library.com/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Game info
 
-## Deploy on Vercel
+The game consists of a set of rules:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- You must to save your username (mandatory) to play the game.
+- The game will only ask for your username once.
+- You can only flip just two cards per turn.
+- If you miss a the match, the game adds an error to your score.
+- On the other hand, if you get a match, the game adds a pair to your score.
+- The game data (current game and user name) is stored in the browser's localstorage.
+- When the game is finished, the game notifies the user with a congratulations message and offers a new game.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tests
+
+To run the test suit use the following command in your terminal:
+
+```bash
+npm run test
+```
+## Demo
+
+The game it's available to check it in [vercel platform]()
