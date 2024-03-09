@@ -111,20 +111,23 @@ export default function BoardGame({ cardImages }) {
   }, [flippedCards, gameCards, solvedPairs])
 
   return (
-    <section className={`bg-white-bone container flex flex-col pt-20 pb-20 rounded-2xl ${openModal && 'backdrop-blur-3xl'} lg:min-w-[1560px] lg:min-h-[920px]`}>
-      <Header score={score} wrongMoves={wrongMoves} userName={userName} />
-      <Modal open={openModal}>
-        <WelcomePanel userName={userName} handleUserName={onSetUserName} onClick={onCloseModal} />
-      </Modal>
+    <>
       <Modal open={playAgainModal}>
         <GameOver userName={userName} handlePlayAgain={onPlayAgain} />
       </Modal>
-      <Cards
-        gameCards={gameCards}
-        handleClick={handleClick}
-        flippedCards={flippedCards}
-        solvedPairs={solvedPairs}
-      />
-    </section>
+      <Modal open={openModal}>
+        <WelcomePanel userName={userName} handleUserName={onSetUserName} />
+      </Modal>
+      <section className={`bg-white-bone flex flex-col justify-center pt-10 pb-20 rounded-2xl ${openModal && 'backdrop-blur-3xl'} lg:max-w-[1560px] lg:min-h-[920px]`}>
+        <Header score={score} wrongMoves={wrongMoves} userName={userName} />
+        <Cards
+          gameCards={gameCards}
+          handleClick={handleClick}
+          flippedCards={flippedCards}
+          solvedPairs={solvedPairs}
+        />
+      </section>
+    </>
+
   )
 }

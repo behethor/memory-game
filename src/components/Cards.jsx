@@ -19,7 +19,7 @@ export default function Cards({
             onClick={() => handleClick(index)}
           >
             <Image
-              className={`object-fill w-40 h-52 rounded-xl shadow-xl ${isFlipped ? 'animate-spin-stop' : ''}`}
+              className={`object-fill w-24 h-36 sm:w-40 sm:h-52 rounded-xl shadow-xl ${isFlipped ? 'animate-spin-stop' : ''}`}
               priority={true}
               src={image}
               alt={card.title}

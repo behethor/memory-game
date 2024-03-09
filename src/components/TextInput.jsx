@@ -7,12 +7,13 @@ const TextInput = forwardRef(function TextInput(props, ref) {
     setValue(evt.target.value)
   }
   return (
-    <div className="text-black max-w-80 ">
+    <div className="text-black max-w-80">
       {label && (
         <label htmlFor={id} className='font-medium text-lg text-grey'>
           <p>{label}</p>
         </label>
       )}
+      <div className='py-2' />
       <input
         ref={ref}
         id={id}
