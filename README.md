@@ -47,4 +47,4 @@ npm run test
 ```
 ## Demo
 
-The game it's available to check it in [vercel platform]()
+The game it's available to check it in [vercel platform](https://memory-game-red-five.vercel.app/)

@@ -20,7 +20,7 @@ export default function Cards({
           >
             <Image
               className={`object-fill w-40 h-52 rounded-xl shadow-xl ${isFlipped ? 'animate-spin-stop' : ''}`}
-              priority
+              priority={true}
               src={image}
               alt={card.title}
               width={150}

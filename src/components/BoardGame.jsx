@@ -106,7 +106,7 @@ export default function BoardGame({ cardImages }) {
     if (flippedCards.length === 2) {
       setTimeout(() => {
         checkMatchPairs()
-      }, 700)
+      }, 1000)
     }
   }, [flippedCards, gameCards, solvedPairs])
 
