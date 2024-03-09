@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import WelcomePanel from '@/components/WelcomePanel'
 import GameOver from '@/components/GameOver'
 import randomizeCards from '@/utils/randomizeCards'
+import Footer from './Footer'
 import {
   getUserNameStore,
   setUserNameStore,
@@ -34,10 +35,6 @@ export default function BoardGame({ cardImages }) {
     setUserName(name)
   }
 
-  const onCloseModal = () => {
-    setOpenModal(false)
-  }
-
   const saveGameData = (gameData) => {
     setGamedataStore({ ...gameData, gameCards })
   }
@@ -46,7 +43,6 @@ export default function BoardGame({ cardImages }) {
    * Resets the game state and starts a new game.
    */
   const onPlayAgain = () => {
-    getGamedataStore()
     setGameCards(randomizeCards(cardImages))
     setFlippedCards([])
     setSolvedPairs([])
@@ -65,43 +61,51 @@ export default function BoardGame({ cardImages }) {
     }
   }
 
-  // useEffect to initialize game data from storage
-  useEffect(() => {
+  const checkGameOver = () => {
+    if (solvedPairs.length === 16) {
+      setPlayAgainModal(true)
+    }
+  }
+
+  /**
+   * Checks if the flipped cards match and updates the game state accordingly.
+   */
+  const checkMatchPairs = () => {
+    const [first, second] = flippedCards
+    if (flippedCards.length < 2) return
+    if (gameCards[first].uuid === gameCards[second].uuid) {
+      saveGameData({ solvedPairs: [...solvedPairs, ...flippedCards], score: score + 1 })
+      setSolvedPairs([...solvedPairs, ...flippedCards])
+      setScore((prev) => prev + 1)
+      checkGameOver()
+    } else {
+      saveGameData({ wrongMoves: wrongMoves + 1 })
+      setWrongMoves((prev) => prev + 1)
+    }
+    setFlippedCards([])
+  }
+
+  // Function to initialize game data from storage 
+  const initializeGameData = () => {
     const gameDataStored = getGamedataStore()
     const userNameStored = getUserNameStore()
+    if (Array.isArray(gameDataStored.solvedPairs) && gameDataStored.solvedPairs.length === 18) {
+      setPlayAgainModal(true)
+    }
     setUserName(userNameStored)
     setOpenModal(userNameStored.length === 0)
     setGameCards(gameDataStored?.gameCards || randomizeCards(cardImages))
     setSolvedPairs(gameDataStored?.solvedPairs || [])
     setWrongMoves(gameDataStored?.wrongMoves || 0)
     setScore(gameDataStored?.score || 0)
+  }
+
+  // useEffect to initialize game data from storage
+  useEffect(() => {
+    initializeGameData()
   }, [])
 
   useEffect(() => {
-    const checkGameOver = () => {
-      if (solvedPairs.length === 16) {
-        setPlayAgainModal(true)
-      }
-    }
-
-    /**
-     * Checks if the flipped cards match and updates the game state accordingly.
-     */
-    const checkMatchPairs = () => {
-      const [first, second] = flippedCards
-      if (flippedCards.length < 2) return
-      if (gameCards[first].uuid === gameCards[second].uuid) {
-        saveGameData({ solvedPairs: [...solvedPairs, ...flippedCards], score: score + 1 })
-        setSolvedPairs([...solvedPairs, ...flippedCards])
-        setScore((prev) => prev + 1)
-        checkGameOver()
-      } else {
-        saveGameData({ wrongMoves: wrongMoves + 1 })
-        setWrongMoves((prev) => prev + 1)
-      }
-      setFlippedCards([])
-    }
-
     // setTimeout to allow the second card to flip before checking for a match
     if (flippedCards.length === 2) {
       setTimeout(() => {
@@ -116,16 +120,20 @@ export default function BoardGame({ cardImages }) {
         <GameOver userName={userName} handlePlayAgain={onPlayAgain} />
       </Modal>
       <Modal open={openModal}>
-        <WelcomePanel userName={userName} handleUserName={onSetUserName} />
+        {userName.length > 0 ? null :
+          <WelcomePanel userName={userName} handleUserName={onSetUserName} />}
       </Modal>
       <section className={`bg-white-bone flex flex-col justify-center pt-10 pb-20 rounded-2xl ${openModal && 'backdrop-blur-3xl'} lg:max-w-[1560px] lg:min-h-[920px]`}>
-        <Header score={score} wrongMoves={wrongMoves} userName={userName} />
+        {userName.length === 0 ? null :
+          <Header score={score} wrongMoves={wrongMoves} userName={userName} />}
         <Cards
           gameCards={gameCards}
           handleClick={handleClick}
           flippedCards={flippedCards}
           solvedPairs={solvedPairs}
         />
+        {userName.length === 0 ? null :
+          <Footer handlePlayAgain={onPlayAgain} />}
       </section>
     </>
 
